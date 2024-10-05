@@ -1,7 +1,5 @@
 # Algoritmos de Cifrado (Encryption Algorithms)
 
-## Introducción
-
 Los algoritmos de cifrado son fundamentales en la criptografía, ya que transforman la información original (texto claro) en un formato que no puede ser comprendido sin la clave correspondiente. A continuación, se presentan dos algoritmos de cifrado ampliamente utilizados: Vigenère y One Time Pad.
 
 ## Algoritmos de Cifrado
