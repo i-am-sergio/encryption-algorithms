@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Time Pad Encryption</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Cinzel Decorative', serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 60%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        label,
+        textarea {
+            display: block;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        textarea {
+            padding: 10px;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 15px;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        #error {
+            color: red;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>One Time Pad Encryption</h1>
+        <p>Introduce tu mensaje y clave para encriptar o desencriptar. La clave debe tener al menos la misma longitud
+            que el mensaje, o bien generar una clave aleatoria segura.</p>
+
+        <label for="message">Mensaje (texto claro o encriptado):</label>
+        <textarea id="message" rows="4" placeholder="Introduce el mensaje"></textarea>
+
+        <label for="key">Clave (libreta de un solo uso):</label>
+        <textarea id="key" rows="4" placeholder="Introduce la clave, o pulsa generar clave aleatoria"></textarea>
+
+        <button onclick="generateRandomKey()">Generar clave aleatoria</button>
+        <button onclick="encryptMessage()">Encriptar</button>
+        <button onclick="decryptMessage()">Desencriptar</button>
+
+        <div id="error"></div>
+
+        <h2>Resultado:</h2>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        // Función para mostrar mensajes de error
+        function showError(message) {
+            document.getElementById("error").textContent = message;
+        }
+
+        // Función para limpiar errores
+        function clearError() {
+            document.getElementById("error").textContent = "";
+        }
+
+        // Verificación de longitud de mensaje y clave
+        function validateInputs(message, key) {
+            if (!message || !key) {
+                showError("El mensaje y la clave no pueden estar vacíos.");
+                return false;
+            }
+            if (message.length > key.length) {
+                showError("La clave es más corta que el mensaje. Esto es vulnerable y no se recomienda.");
+                return false;
+            }
+            return true;
+        }
+
+        // Función para generar una clave aleatoria segura del tamaño del mensaje
+        function generateRandomKey() {
+            clearError();
+            let message = document.getElementById("message").value;
+            if (!message) {
+                showError("Introduce primero el mensaje para generar una clave del tamaño adecuado.");
+                return;
+            }
+            let randomKey = "";
+            for (let i = 0; i < message.length; i++) {
+                randomKey += String.fromCharCode(Math.floor(Math.random() * 256));  // Caracteres aleatorios
+            }
+            document.getElementById("key").value = randomKey;
+            showError("Clave generada correctamente.");
+        }
+
+        // Función para encriptar usando One Time Pad
+        function encryptMessage() {
+            clearError();
+            let message = document.getElementById("message").value;
+            let key = document.getElementById("key").value;
+
+            // Validar entradas
+            if (!validateInputs(message, key)) return;
+
+            let result = "";
+            for (let i = 0; i < message.length; i++) {
+                // Aplicamos XOR entre los caracteres del mensaje y la clave
+                result += String.fromCharCode(message.charCodeAt(i) ^ key.charCodeAt(i));
+            }
+
+            // Mostramos directamente el resultado encriptado
+            document.getElementById("result").textContent = "Encriptado: " + btoa(result); // Usamos Base64 para mostrar caracteres especiales
+        }
+
+        // Función para desencriptar usando One Time Pad
+        function decryptMessage() {
+            clearError();
+            let encryptedMessage = atob(document.getElementById("message").value); // Decodificamos desde Base64
+            let key = document.getElementById("key").value;
+
+            // Validar entradas
+            if (!validateInputs(encryptedMessage, key)) return;
+
+            let result = "";
+            for (let i = 0; i < encryptedMessage.length; i++) {
+                // Aplicamos XOR entre los caracteres del mensaje y la clave
+                result += String.fromCharCode(encryptedMessage.charCodeAt(i) ^ key.charCodeAt(i));
+            }
+
+            // Mostramos el mensaje desencriptado
+            document.getElementById("result").textContent = "Desencriptado: " + result;
+        }
+
+    </script>
+</body>
+
+</html>

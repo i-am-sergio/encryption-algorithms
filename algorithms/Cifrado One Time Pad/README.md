@@ -1,0 +1,4 @@
+# **Algoritmo de encriptación "ONE TIME PAD"**
+De entre todos los sistemas de cifrado, la libreta de un solo uso (OTP / One-time pad) es el método de criptografía más robusto y simple. Ampliamente usado y comprobado, permite un cifrado cien por cien irrompible cuando se usa correctamente. Su invención se atribuye comúnmente a Gilbert S. Vernam, de los Laboratorios Telefónicos Bell en el año 1917 en la comunicación télex, aunque ya había sido descrito anteriormente por Frank Miller, un banquero de California en 1882 (lo utilizó en telegrafía eléctrica terrestre - morse americano, combinándolo con un libro de códigos), y se puede cifrar y descifrar manualmente de forma sencilla.
+
+Enlace para poder probar: [Cifrado ONE TIME PAD](https://nelzonapa.github.io/Algoritmo_cifrado/)
