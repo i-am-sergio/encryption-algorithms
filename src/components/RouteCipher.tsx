@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 // Importamos la función decrypt del archivo JS
+// @ts-ignore
 import { decrypt } from "./js_route/code";
 
 const RouteCipher: React.FC = () => {
