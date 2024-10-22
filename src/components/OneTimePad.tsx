@@ -15,9 +15,9 @@ const OneTimePad: React.FC = () => {
     setError('');
   };
 
-  // Función para eliminar espacios y convertir a mayúsculas
+  // Función para eliminar espacios y convertir a minúsculas
   const normalizeText = (text: string) => {
-    return text.replace(/ /g, '').toUpperCase();
+    return text.replace(/ /g, '').toLowerCase();
   };
 
   const validateInputs = (message: string, key: string) => {
@@ -42,7 +42,7 @@ const OneTimePad: React.FC = () => {
       return;
     }
     let randomKey = '';
-    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const alphabet = 'abcdefghijklmnñopqrstuvwxyz';
     for (let i = 0; i < normalizedMessage.length; i++) {
       randomKey += alphabet[Math.floor(Math.random() * alphabet.length)];
     }
@@ -50,7 +50,7 @@ const OneTimePad: React.FC = () => {
     showError('Clave generada correctamente.');
   };
 
-  // Función para cifrar usando el algoritmo OTP
+  // Función para cifrar usando el algoritmo OTP con alfabeto extendido
   const encryptMessage = () => {
     clearError();
     const normalizedMessage = normalizeText(message);
@@ -58,17 +58,23 @@ const OneTimePad: React.FC = () => {
     if (!validateInputs(message, key)) return;
 
     let encryptedMessage = '';
+    const alphabet = 'abcdefghijklmnñopqrstuvwxyz';
+
     for (let i = 0; i < normalizedMessage.length; i++) {
-      const messageChar = normalizedMessage.charCodeAt(i) - 65; // A = 0, B = 1, ..., Z = 25
-      const keyChar = normalizedKey.charCodeAt(i) - 65;
-      const encryptedChar = String.fromCharCode(((messageChar + keyChar) % 26) + 65); // Cifrado
+      const messageChar = alphabet.indexOf(normalizedMessage[i]);
+      const keyChar = alphabet.indexOf(normalizedKey[i]);
+      if (messageChar === -1 || keyChar === -1) {
+        showError('El mensaje y la clave solo deben contener letras del alfabeto extendido.');
+        return;
+      }
+      const encryptedChar = alphabet[(messageChar + keyChar) % alphabet.length];
       encryptedMessage += encryptedChar;
     }
 
     setResult('Encriptado: ' + encryptedMessage);
   };
 
-  // Función para desencriptar usando el algoritmo OTP
+  // Función para desencriptar usando el algoritmo OTP con alfabeto extendido
   const decryptMessage = () => {
     clearError();
     const normalizedMessage = normalizeText(message);
@@ -76,10 +82,16 @@ const OneTimePad: React.FC = () => {
     if (!validateInputs(message, key)) return;
 
     let decryptedMessage = '';
+    const alphabet = 'abcdefghijklmnñopqrstuvwxyz';
+
     for (let i = 0; i < normalizedMessage.length; i++) {
-      const messageChar = normalizedMessage.charCodeAt(i) - 65;
-      const keyChar = normalizedKey.charCodeAt(i) - 65;
-      const decryptedChar = String.fromCharCode(((messageChar - keyChar + 26) % 26) + 65); // Desencriptado
+      const messageChar = alphabet.indexOf(normalizedMessage[i]);
+      const keyChar = alphabet.indexOf(normalizedKey[i]);
+      if (messageChar === -1 || keyChar === -1) {
+        showError('El mensaje y la clave solo deben contener letras del alfabeto extendido.');
+        return;
+      }
+      const decryptedChar = alphabet[(messageChar - keyChar + alphabet.length) % alphabet.length];
       decryptedMessage += decryptedChar;
     }
 
@@ -91,7 +103,7 @@ const OneTimePad: React.FC = () => {
       <h1
         style={{ textAlign: 'center', fontSize: '28px', marginBottom: '20px' }}
       >Cifrado One Time Pad</h1>
-      <label htmlFor="message">Mensaje (solo letras, sin espacios):</label>
+      <label htmlFor="message">Mensaje (alfabeto extendido, sin espacios):</label>
       <textarea
         id="message"
         rows={4}
