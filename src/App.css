@@ -1,0 +1,26 @@
+/* Estilo para el menú de navegación */
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    background-color: #333333;
+    padding: 1rem;
+    list-style: none;
+  }
+  
+  .navbar li {
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  .navbar li:hover {
+    background-color: #555;
+  }
+  
+  /* Estilo para el contenido que se muestra */
+  .content {
+    padding: 2rem;
+    font-size: 1.5rem;
+  }
+  

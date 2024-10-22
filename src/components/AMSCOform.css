@@ -1,0 +1,89 @@
+/* AMSCOForm.css */
+
+.amsco-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .amsco-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .amsco-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .amsco-form textarea,
+  .amsco-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #bbb; /* Bordes gris más oscuro */
+    border-radius: 4px;
+    font-size: 16px;
+    resize: vertical;
+    box-sizing: border-box;
+    color: #000; /* Cambiar el color del texto a negro */
+    background-color: #fff; /* Asegurar que el fondo sea blanco */
+  }
+  
+  .amsco-form button {
+    margin-right: 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .amsco-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  .amsco-form table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 1px solid #bbb; /* Bordes de la tabla gris más oscuro */
+  }
+  
+  .amsco-form th,
+  .amsco-form td {
+    border: 1px solid #bbb; /* Bordes gris más oscuro */
+    padding: 8px;
+    text-align: center;
+    color: #000; /* Asegurar que el texto de la tabla también sea negro */
+  }
+  
+  .amsco-form th {
+    background-color: #f1f1f1;
+    color: #333;
+  }
+  
+  .amsco-form h3 {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .amsco-form p {
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #bbb; /* Bordes gris más oscuro para el resultado */
+    color: #000; /* Cambiar el color del texto a negro */
+    overflow-wrap: break-word;
+  }
+  

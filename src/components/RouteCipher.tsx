@@ -67,22 +67,22 @@ const RouteCipher: React.FC = () => {
         maxWidth: "600px",
         margin: "0 auto",
         padding: "20px",
-        fontFamily: "Arial, sans-serif",
+        // fontFamily: "Arial, sans-serif",
         backgroundColor: "#f9f9f9",
         borderRadius: "8px",
         boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
       }}
     >
-      <h1 style={{ textAlign: "center", color: "#333" }}>
+      <h1 style={{ textAlign: 'center', fontSize: '28px', marginBottom: '20px', color: '#000' }}>
         Route Cipher Decryptor
       </h1>
       <form
         onSubmit={handleSubmit}
-        style={{ display: "flex", flexDirection: "column", gap: "15px" }}
+        // style={{ display: "flex", flexDirection: "column", gap: "15px" }}
       >
         <div>
           <label
-            style={{ display: "block", marginBottom: "5px", color: "#555" }}
+            style={{ display: "block", marginBottom: "5px", color: "#555", fontSize: "16px" }}
           >
             Path Type:
           </label>
@@ -104,7 +104,7 @@ const RouteCipher: React.FC = () => {
         </div>
         <div>
           <label
-            style={{ display: "block", marginBottom: "5px", color: "#555" }}
+            style={{ display: "block", marginBottom: "5px", color: "#555", fontSize: "16px" }}
           >
             Route Size:
           </label>
@@ -122,41 +122,47 @@ const RouteCipher: React.FC = () => {
         </div>
         <div>
           <label
-            style={{ display: "block", marginBottom: "5px", color: "#555" }}
+            style={{ display: "block", marginBottom: "5px", color: "#555", fontSize: "16px" }}
           >
-            Plain Text:
+            Texto Plano:
           </label>
           <input
             type="text"
             value={plainText}
             onChange={(e) => setPlainText(e.target.value)}
             style={{
+              width: "100%",
               padding: "10px",
-              fontSize: "16px",
-              borderRadius: "4px",
-              border: "1px solid #ccc",
-            }}
+              marginBottom: "10px",
+              boxSizing: "border-box",
+              fontSize: '16px', height: '80px', borderRadius: '10px',
+              border: '1px solid #ccc',
+              boxShadow: 'inset 0 1px 3px rgba(0, 0, 0, 0.1)',
+              outline: 'none'
+            }}    
           />
         </div>
-        <button
-          type="submit"
-          style={{
-            padding: "10px",
-            fontSize: "16px",
-            backgroundColor: "#28a745",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          Decrypt
-        </button>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+          <button
+            type="submit"
+            style={{
+              cursor: 'pointer',
+              padding: '10px 40px',
+              margin: '10px',
+              backgroundColor: '#646fe5',
+              transition: 'transform 0.2s ease-in-out', // Animación suave
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'} // Agranda un 5% al pasar el mouse
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'} // Vuelve al tamaño normal al quitar el mouse
+          >
+            Decrypt
+          </button>
+        </div>
       </form>
 
       {result && (
         <div style={{ marginTop: "20px" }}>
-          <h2 style={{ color: "#333" }}>Decrypted Text:</h2>
+          <h2 style={{ color: "#333", fontSize: "20px" }}>Decrypted Text:</h2>
           <p
             style={{
               backgroundColor: "#e7f3fe",
@@ -171,7 +177,7 @@ const RouteCipher: React.FC = () => {
       )}
       {parallelepiped && (
         <div style={{ marginTop: "20px" }}>
-          <h2 style={{ color: "#333" }}>Parallelepiped Representation:</h2>
+          <h2 style={{ color: "#333", fontSize: "20px" }}>Parallelepiped Representation:</h2>
           <pre
             style={{
               backgroundColor: "#f1f1f1",
